@@ -1,5 +1,6 @@
 const express = require("express");
 var app = express();
+var fortune = require("./lib/fortune.js");
 const handlebars = require("express-handlebars").create({
   defaultLayout: "main",
 });
@@ -13,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about*", (req, res) => {
-  res.render("about");
+  res.render("about", { fortune: fortune.getFortune() });
 });
 
 app.get("/about/contact", (req, res) => {
